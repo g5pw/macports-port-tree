@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #eee;
+        }
+    </style>
+
+    <title>Macports - {{ port.name }}</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>{{ port.name }} @{{ port.version }}_{{ port.revision }} <small id="description" class="text-muted">{{ port.description }}</small></h1>
+    <div class="row mt-5">
+        <ul id="metadata" class="list-group col-4">
+            <li class="list-group-item">Categories
+                {% for c in port.categories.split() %}
+                    <a href="#" class="badge badge-dark">{{ c }}</a>
+                {% endfor %}
+            </li>
+            <li class="list-group-item">License
+                {% for l in port.license.split() %}
+                    <span class="badge badge-dark">{{ l }}</span>
+                {% endfor %}
+            </li>
+            <li class="list-group-item">
+                Maintained by
+                {% if "nomaintainer" in port.maintainers %}
+                    no one! :( <a href="#">Adopt it!</a>
+                {% else %}
+                    {% for maintainer in port.maintainers %}
+                        <span class="badge badge-primary">
+                            {{ maintainer.strip("{}").split()[0] }}
+                        </span>
+                    {% endfor %}
+
+                    {% if "openmaintainer" in port.maintainers %}
+                        <br/>This port has openmaintainer.
+                    {% endif %}
+                {% endif %}
+            </li>
+            <li class="list-group-item"><a href="{{ port.homepage }}">Homepage</a></li>
+        </ul>
+        <p id="long_description" class="col-8">
+            {{ port.long_description }}
+        </p>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
+<!--
+    "variants"         : "universal",
+    "portdir"          : "aqua/AppHack",
+    "description"      : "Program for hacking application bundles.",
+    "homepage"         : "http://www.sveinbjorn.org/apphack",
+    "epoch"            : "0",
+    "platforms"        : "macosx",
+    "name"             : "AppHack",
+    "license"          : "GPL-2+",
+    "long_description" : "AppHack is a developer and theming tool to alter, replace or extract the property lists or icons of Mac OS X application bundle packages.",
+    "maintainers"      : "nomaintainer",
+    "depends_extract"  : "bin:unzip:unzip",
+    "categories"       : "aqua devel",
+    "version"          : "1.1",
+    "revision"         : "0"
+--!>
