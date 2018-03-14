@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from json import load as json_load
 from argparse import ArgumentParser, FileType
